@@ -2,7 +2,7 @@ using IteratorPattern.Iterator;
 
 namespace IteratorPattern;
 
-public class WholeSalePriceList<T> where T : class
+public class WholeSalePriceList<T> : IFullCatalog<T> where T : class
 {
     private readonly List<T> _items;
 
@@ -10,7 +10,7 @@ public class WholeSalePriceList<T> where T : class
     {
         this._items = items;
     }
-
+    
     public IIterator<T> CreateIterator()
     {
         return new ListIterator<T>(_items);

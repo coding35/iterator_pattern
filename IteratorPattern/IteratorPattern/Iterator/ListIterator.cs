@@ -22,4 +22,20 @@ public class ListIterator<T> : IIterator<T>
         _index++;
         return item;
     }
+
+    public void Remove()
+    {
+        _list![_index] = default!;
+    }
+
+    public T? CurrentItem()
+    {
+        T? item = _list![_index];
+        return item;
+    }
+
+    public int GetIteration()
+    {
+        return _index;
+    }
 }

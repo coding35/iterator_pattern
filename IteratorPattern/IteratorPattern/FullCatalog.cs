@@ -5,10 +5,10 @@ namespace IteratorPattern;
 
 public class FullCatalog<T> where T : class
 {
-    private RetailSalePriceList<T> Retail { get; set; }
-    private WholeSalePriceList<T> Wholesale { get; set; }
+    private IFullCatalog<T> Retail { get; set; }
+    private IFullCatalog<T> Wholesale { get; set; }
 
-    public FullCatalog(RetailSalePriceList<T> retail, WholeSalePriceList<T> wholesale)
+    public FullCatalog(IFullCatalog<T> retail, IFullCatalog<T> wholesale)
     {
         this.Retail = retail;
         this.Wholesale = wholesale;

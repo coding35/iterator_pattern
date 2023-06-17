@@ -2,7 +2,7 @@ using IteratorPattern.Iterator;
 
 namespace IteratorPattern;
 
-public class RetailSalePriceList<T> where T : class
+public class RetailSalePriceList<T> : IFullCatalog<T> where T : class
 {
     private readonly T?[] _items;
 

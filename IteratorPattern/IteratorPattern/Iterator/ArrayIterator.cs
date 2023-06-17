@@ -23,4 +23,20 @@ public class ArrayIterator<T> : IIterator<T>
         _index += 1;
         return item;
     }
+
+    public void Remove()
+    {
+        throw new InvalidOperationException("Cannot remove from an array.");
+    }
+
+    public T? CurrentItem()
+    {
+        T? item = _array![_index];
+        return item;
+    }
+
+    public int GetIteration()
+    {
+        return _index;
+    }
 }
