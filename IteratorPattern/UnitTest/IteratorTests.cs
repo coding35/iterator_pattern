@@ -41,11 +41,23 @@ public class Tests
     }
 
     [Test]
-    public void IteratorShouldIterate()
+    public void IteratorShouldIterateOverDifferentCollectionTypes()
     {
         var fullCatalog = new FullCatalog<Item>(
-            new RetailSalePriceList<Item>(new Item[] { new Item("Item1", 20M), new Item("Item2", 25M) }),
-            new WholeSalePriceList<Item>(new List<Item> { new Item("Item1", 10M), new Item("Item2", 12.50M) })
+            
+            // an array of items
+            new RetailSalePriceList<Item>(
+                new[] { 
+                    new Item("Item1", 20M), 
+                    new("Item2", 25M) 
+                }),
+            
+            // a list of items
+            new WholeSalePriceList<Item>(
+                new List<Item> { 
+                    new("Item1", 10M), 
+                    new("Item2", 12.50M) 
+                })
         );
 
         fullCatalog.PrintCatalog();
