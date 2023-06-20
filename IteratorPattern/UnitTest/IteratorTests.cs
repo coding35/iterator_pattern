@@ -16,7 +16,7 @@ public class Tests
     [Test]
     public void ArrayIteratorShouldIterate()
     {
-        var arr = new Item[] { new Item("Item1", 20M), new Item("Item2", 25M) };
+        var arr = new [] { new Item("Item1", 20M), new Item("Item2", 25M) };
         
         ArrayIterator<Item> arrayIterator =
             new ArrayIterator<Item>(arr);
@@ -49,6 +49,27 @@ public class Tests
     }
 
     [Test]
+    public void DictionaryIteratorShouldIterate()
+    {
+        var list = new Dictionary<int, Item>
+        {
+            { 0, new Item("Item1", 20M) },
+            { 1, new Item("Item2", 25M) }
+        };
+        DictionaryIterator<Item> dictionaryIterator =
+            new DictionaryIterator<Item>(list);
+
+        while (dictionaryIterator.HasNext())
+        {
+            var current = dictionaryIterator.CurrentItem();
+            var iteration = dictionaryIterator.GetIteration();
+            Assert.AreEqual(list[iteration], current);
+            Item? item = dictionaryIterator.Next();
+            Console.WriteLine(item?.GetName());
+        }
+    }
+
+    [Test]
     public void IteratorShouldIterateOverDifferentCollectionTypes()
     {
         var fullCatalog = new FullCatalog<Item>(
@@ -65,6 +86,14 @@ public class Tests
                 new List<Item> { 
                     new("Item1", 10M), 
                     new("Item2", 12.50M) 
+                }),
+            
+            // a dictionary of items
+            new PartnerPriceList<Item>(
+                new Dictionary<int, Item>
+                {
+                    { 0, new Item("Item1", 5M) },
+                    { 1, new Item("Item2", 6.25M) }
                 })
         );
         fullCatalog.PrintCatalog();
