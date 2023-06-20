@@ -4,7 +4,7 @@ namespace IteratorPattern;
 
 public class PartnerPriceList<T> : IFullCatalog<T> where T : class
 {
-    readonly Dictionary<int, T> _items;
+    private readonly Dictionary<int, T> _items;
 
     public PartnerPriceList(Dictionary<int, T> items)
     {

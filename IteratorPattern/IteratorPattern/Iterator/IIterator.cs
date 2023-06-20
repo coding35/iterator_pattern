@@ -7,4 +7,5 @@ public interface IIterator<out T>
     void Remove();
     T? CurrentItem();
     int GetIteration();
+    IEnumerable<Item> GetList();
 }

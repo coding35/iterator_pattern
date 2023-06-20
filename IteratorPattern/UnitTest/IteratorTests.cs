@@ -92,11 +92,49 @@ public class Tests
             new PartnerPriceList<Item>(
                 new Dictionary<int, Item>
                 {
-                    { 0, new Item("Item1", 5M) },
-                    { 1, new Item("Item2", 6.25M) }
+                    { 0, new Item("Item1", 12M) },
+                    { 1, new Item("Item2", 14.25M) }
                 })
         );
         fullCatalog.PrintCatalog();
+    }
+    
+    [Test]
+    public void IteratorShouldIterateOverCombinedCollectionTypes()
+    {
+
+            // an array of items
+            var retail = new RetailSalePriceList<Item>(
+                new Item[]
+                {
+                    new("Item1", 20M),
+                    new("Item2", 25M)
+                });
+            
+            // a list of items
+            var wholesale = new WholeSalePriceList<Item>(
+                new List<Item>
+                {
+                    new("Item1", 10M),
+                    new("Item2", 12.50M)
+                });
+            
+            // a dictionary of items
+            var partner = new PartnerPriceList<Item>(
+                new Dictionary<int, Item>
+                {
+                    { 0, new Item("Item1", 12M) },
+                    { 1, new Item("Item2", 14.25M) }
+                });
+
+            var list = new List<Item>();
+            list.AddRange(retail.CreateIterator().GetList());
+            list.AddRange(wholesale.CreateIterator().GetList());
+            list.AddRange(partner.CreateIterator().GetList());
+            
+        var simpleCatalog = new SimpleCatalog<Item>(list);
+        
+        simpleCatalog.PrintCatalog();
     }
 }
 

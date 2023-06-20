@@ -37,4 +37,9 @@ public class DictionaryIterator<T> : IIterator<T> where T : class
     {
         return _index;
     }
+
+    public IEnumerable<Item> GetList()
+    {
+        return (IEnumerable<Item>)_dictionary.Values.ToList();
+    }
 }

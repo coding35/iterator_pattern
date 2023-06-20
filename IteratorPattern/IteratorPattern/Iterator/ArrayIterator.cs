@@ -39,4 +39,9 @@ public class ArrayIterator<T> : IIterator<T>
     {
         return _index;
     }
+
+    public IEnumerable<Item> GetList()
+    {
+        return (IEnumerable<Item>)_array.ToList();
+    }
 }
